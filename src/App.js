@@ -11,11 +11,15 @@ function App() {
     <>
     <Header />
     <SearchForm />
-    <div className="row">
-    <EmpCard />
-    <EmpCard />
-    <EmpCard />
-    <EmpCard />
+    <div className="row" style={{justifyContent: "center"}}>
+      {employees.map((employee) => 
+      <EmpCard
+      key={employee.id}
+      name={employee.name}
+      department={employee.department}
+      email={employee.email}
+      phone={employee.phone}
+      />)}
     </div>
     </>
   );
