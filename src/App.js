@@ -11,7 +11,12 @@ function App() {
     <>
     <Header />
     <SearchForm />
+    <div className="row">
     <EmpCard />
+    <EmpCard />
+    <EmpCard />
+    <EmpCard />
+    </div>
     </>
   );
 }
