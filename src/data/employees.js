@@ -56,3 +56,10 @@ export const employees =
     department: "Marketing"
 }
 ]
+
+export const departments = [
+    "Marketing",
+    "HR",
+    "Engineering",
+    "Management"
+]
