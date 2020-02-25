@@ -4,7 +4,7 @@ import { EmpCard } from "./EmpCard.js"
 
 export const SearchResults = () => {
 
-    const sortedEmp = employees.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    const sortedEmp = employees.sort((a, b) => (a.lastname > b.lastname) ? 1 : -1)
 
     const [ results, setResults ] = useState({
             employees: sortedEmp
@@ -22,11 +22,11 @@ export const SearchResults = () => {
         document.getElementById("search-form").reset()
 
         if (department && name) {
-            setResults({employees: employees.filter((employee) => employee.name === name && employee.department)})
+            setResults({employees: employees.filter((employee) => (`${employee.firstname} ${employee.lastname}`).includes(name) && employee.department === department)})
         } else if (department) {
             setResults({employees: employees.filter((employee) => employee.department === department)})
         } else if (name) {
-            setResults({employees: employees.filter((employee) => employee.name === name)})
+            setResults({employees: employees.filter((employee) => (`${employee.firstname} ${employee.lastname}`).includes(name))})
         }
     })
 
@@ -38,7 +38,6 @@ export const SearchResults = () => {
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Search by Name</label>
                             <input name="name" type="text" className="form-control" id="name-field" aria-describedby="emailHelp" />
-                            <small id="name" className="form-text text-muted">Search for a valid name.</small>
                             <div className="row" style={{ justifyContent: "center" }}><p>-OR-</p></div>
                             <div className="form-row align-items-center">
                                 <div className="col-auto my-1">
@@ -59,7 +58,8 @@ export const SearchResults = () => {
             <div className="row" style={{ justifyContent: "center" }}>
                 {results.employees !== [] ? results.employees.map(result => (<EmpCard
                     key={result.id}
-                    name={result.name}
+                    firstname={result.firstname}
+                    lastname={result.lastname}
                     department={result.department}
                     email={result.email}
                     phone={result.phone}
