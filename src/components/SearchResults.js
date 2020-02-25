@@ -2,15 +2,16 @@ import React, { useState } from "react"
 import { employees, departments } from "../data/employees.js"
 import { EmpCard } from "./EmpCard.js"
 
-
 export const SearchResults = () => {
 
+    const sortedEmp = employees.sort((a, b) => (a.name > b.name) ? 1 : -1)
+
     const [ results, setResults ] = useState({
-            employees: employees
+            employees: sortedEmp
     })
 
     const handleReset = () => {
-        setResults({employees: employees})
+        setResults({employees: sortedEmp})
     }
 
     const handleSubmit = ((event) => {
